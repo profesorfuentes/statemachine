@@ -43,6 +43,73 @@ public class BotApp {
         {RECLAMOS_AGENDAR_TURNO, MENU_PRINCIPAL}                       // TURNO_RECLAMOS
     };
 
+    // Array de textos de menús
+    private static final String[] menuTexts = {
+        """
+        Menú principal:
+        1 - Consulta de expediente
+        2 - Consulta de reclamos
+        3 - Solicitar turno
+        0 - Salir
+        """,
+        """
+        Consulta de expediente:
+        1 - Por DNI
+        2 - Por legajo
+        0 - Volver al menú principal
+        """,
+        """
+        Consulta de reclamos:
+        1 - Por CUIT
+        2 - Por número de reclamo
+        0 - Volver al menú principal
+        """,
+        """
+        Solicitar turno:
+        1 - Reconsideraciones
+        2 - Reclamos
+        0 - Volver al menú principal
+        """,
+        """
+        Consulta expediente por DNI:
+        1 - Imprimir
+        2 - Solicitar informe
+        0 - Volver
+        """,
+        """
+        Consulta expediente por legajo:
+        1 - Imprimir
+        2 - Dar de baja
+        3 - Iniciar reclamo
+        0 - Volver
+        """,
+        "", // Estado 6 (sin texto, espacio reservado)
+        """
+        Consulta de reclamos por CUIT:
+        1 - Imprimir
+        2 - Cerrar reclamo
+        3 - Modificar reclamo
+        0 - Volver
+        """,
+        """
+        Consulta de reclamos por número de reclamo:
+        1 - Imprimir
+        2 - Eliminar reclamo
+        0 - Volver
+        """,
+        "", // Estado 9 (sin texto, espacio reservado)
+        """
+        Solicitar turno para reconsideraciones:
+        1 - Agendar turno
+        0 - Volver
+        """,
+        """
+        Solicitar turno para reclamos:
+        1 - Agendar turno
+        0 - Volver
+        """
+    };
+
     private static int estado = MENU_PRINCIPAL;
 
     public static void main(String[] args) {
@@ -60,69 +127,11 @@ public class BotApp {
     }
 
     private static void mostrarMenu() {
-        switch (estado) {
-            case MENU_PRINCIPAL -> System.out.println("""
-                Menú principal:
-                1 - Consulta de expediente
-                2 - Consulta de reclamos
-                3 - Solicitar turno
-                0 - Salir
-                """);
-            case CONSULTA_EXPEDIENTE -> System.out.println("""
-                Consulta de expediente:
-                1 - Por DNI
-                2 - Por legajo
-                0 - Volver al menú principal
-                """);
-            case EXPEDIENTE_DNI -> System.out.println("""
-                Consulta expediente por DNI:
-                1 - Imprimir
-                2 - Solicitar informe
-                0 - Volver
-                """);
-            case EXPEDIENTE_LEGAJO -> System.out.println("""
-                Consulta expediente por legajo:
-                1 - Imprimir
-                2 - Dar de baja
-                3 - Iniciar reclamo
-                0 - Volver
-                """);
-            case CONSULTA_RECLAMOS -> System.out.println("""
-                Consulta de reclamos:
-                1 - Por CUIT
-                2 - Por número de reclamo
-                0 - Volver al menú principal
-                """);
-            case RECLAMO_CUIT -> System.out.println("""
-                Consulta de reclamos por CUIT:
-                1 - Imprimir
-                2 - Cerrar reclamo
-                3 - Modificar reclamo
-                0 - Volver
-                """);
-            case RECLAMO_NUMERO -> System.out.println("""
-                Consulta de reclamos por número de reclamo:
-                1 - Imprimir
-                2 - Eliminar reclamo
-                0 - Volver
-                """);
-            case SOLICITAR_TURNO -> System.out.println("""
-                Solicitar turno:
-                1 - Reconsideraciones
-                2 - Reclamos
-                0 - Volver al menú principal
-                """);
-            case TURNO_RECONSIDERACIONES -> System.out.println("""
-                Solicitar turno para reconsideraciones:
-                1 - Agendar turno
-                0 - Volver
-                """);
-            case TURNO_RECLAMOS -> System.out.println("""
-                Solicitar turno para reclamos:
-                1 - Agendar turno
-                0 - Volver
-                """);
-            default -> System.out.println("Opción no válida.");
+        // Muestra el texto correspondiente al estado actual
+        if (estado < menuTexts.length && !menuTexts[estado].isEmpty()) {
+            System.out.println(menuTexts[estado]);
+        } else {
+            System.out.println("Opción no válida.");
         }
     }
 }
